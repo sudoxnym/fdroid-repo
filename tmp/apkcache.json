@@ -1,0 +1,65 @@
+{
+  "METADATA_VERSION": 20002,
+  "allow_disabled_algorithms": false,
+  "nightd.apk": {
+    "hash": "eafc117e933527cfb6b3891fadd49ff196c6803205cacb72a00751123e023f95",
+    "hashType": "sha256",
+    "uses-permission": [
+      [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        null
+      ],
+      [
+        "android.permission.FOREGROUND_SERVICE",
+        null
+      ],
+      [
+        "android.permission.FOREGROUND_SERVICE_SPECIAL_USE",
+        null
+      ],
+      [
+        "android.permission.WRITE_SETTINGS",
+        null
+      ],
+      [
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        null
+      ],
+      [
+        "android.permission.INTERNET",
+        null
+      ]
+    ],
+    "uses-permission-sdk-23": [],
+    "features": [],
+    "icons_src": {
+      "240": "res/mipmap-hdpi-v4/ic_launcher.png",
+      "160": "res/mipmap-mdpi-v4/ic_launcher.png",
+      "320": "res/mipmap-xhdpi-v4/ic_launcher.png",
+      "480": "res/mipmap-xxhdpi-v4/ic_launcher.png",
+      "640": "res/mipmap-xxxhdpi-v4/ic_launcher.png",
+      "-1": "res/mipmap-mdpi-v4/ic_launcher.png"
+    },
+    "icons": {
+      "640": "com.sudoxnym.nightd.8.png",
+      "480": "com.sudoxnym.nightd.8.png",
+      "320": "com.sudoxnym.nightd.8.png",
+      "240": "com.sudoxnym.nightd.8.png",
+      "160": "com.sudoxnym.nightd.8.png",
+      "0": "com.sudoxnym.nightd.8.png"
+    },
+    "antiFeatures": {},
+    "packageName": "com.sudoxnym.nightd",
+    "versionCode": 8,
+    "name": "nightd",
+    "versionName": "1.2",
+    "minSdkVersion": 21,
+    "targetSdkVersion": 34,
+    "sig": "f6c5c9624f5712f65d78c6261f4e33c3",
+    "signer": "ff4336c6eaf2e11c6dea26ed311931b541a5915bdccc69f155f110dba90c6076",
+    "size": 94352,
+    "apkName": "nightd.apk",
+    "icon": "com.sudoxnym.nightd.8.png",
+    "added": 1765224542.326318
+  }
+}

@@ -1,0 +1,9 @@
+sdk_path: /home/sudoxnym/android-sdk
+repo_url: https://sudoxnym.github.io/fdroid-repo/repo
+repo_name: sudoxnym repo
+repo_description: apps by sudoxnym
+repo_keyalias: vmi2454348.contaboserver.net
+keystore: keystore.p12
+keystorepass: 7CRn7teyGgBzUfIPeARp9TqSj7ZKMEK4Uqy1vXSs2LE=
+keypass: 7CRn7teyGgBzUfIPeARp9TqSj7ZKMEK4Uqy1vXSs2LE=
+keydname: CN=vmi2454348.contaboserver.net, OU=F-Droid
