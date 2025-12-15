@@ -9,8 +9,12 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --accent: #00ff9d;
-      --accent-dim: rgba(0, 255, 157, 0.15);
+      --aqua: #00ffff;
+      --lavender: #b8a9ff;
+      --seafoam: #7fffd4;
+      --magenta: #ff00ff;
+      --accent: var(--aqua);
+      --accent-dim: rgba(0, 255, 255, 0.15);
       --bg-primary: #0a0a0f;
       --bg-card: #12121a;
       --bg-card-hover: #1a1a24;
@@ -87,10 +91,9 @@
       margin-bottom: 0.5rem;
     }
     .escape {
-      color: var(--accent);
+      color: var(--magenta);
       font-family: "JetBrains Mono", monospace;
       font-size: 0.9rem;
-      opacity: 0.8;
     }
 
     .qr-card {
@@ -146,7 +149,7 @@
       font-weight: 600;
     }
     .btn-primary:hover {
-      box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
       transform: translateY(-1px);
     }
     .btn-secondary {
@@ -184,8 +187,8 @@
     .app-icon {
       width: 56px;
       height: 56px;
-      background: var(--accent-dim);
-      border: 1px solid var(--accent);
+      background: rgba(184, 169, 255, 0.15);
+      border: 1px solid var(--lavender);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -218,13 +221,13 @@
       font-size: 0.7rem;
       padding: 0.2rem 0.5rem;
       background: var(--bg-primary);
-      border: 1px solid var(--border);
+      border: 1px solid var(--seafoam);
       border-radius: 4px;
-      color: var(--text-secondary);
+      color: var(--seafoam);
     }
     .tag.root {
-      border-color: #ff6b6b;
-      color: #ff6b6b;
+      border-color: var(--magenta);
+      color: var(--magenta);
     }
 
     .instructions {
@@ -237,7 +240,7 @@
     .instructions h3 {
       font-family: "JetBrains Mono", monospace;
       font-size: 0.9rem;
-      color: var(--accent);
+      color: var(--lavender);
       margin-bottom: 1rem;
     }
     .instructions ol {
@@ -300,14 +303,14 @@
 </head>
 <body>
   <div class="network-bg">
-    <div class="node" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
-    <div class="node" style="top: 25%; left: 85%; animation-delay: 0.5s;"></div>
-    <div class="node" style="top: 45%; left: 5%; animation-delay: 1s;"></div>
-    <div class="node" style="top: 60%; left: 90%; animation-delay: 1.5s;"></div>
-    <div class="node" style="top: 80%; left: 15%; animation-delay: 2s;"></div>
-    <div class="node" style="top: 70%; left: 75%; animation-delay: 2.5s;"></div>
-    <div class="node" style="top: 35%; left: 50%; animation-delay: 0.8s;"></div>
-    <div class="node" style="top: 90%; left: 60%; animation-delay: 1.2s;"></div>
+    <div class="node" style="top: 15%; left: 10%; animation-delay: 0s; background: var(--aqua);"></div>
+    <div class="node" style="top: 25%; left: 85%; animation-delay: 0.5s; background: var(--magenta);"></div>
+    <div class="node" style="top: 45%; left: 5%; animation-delay: 1s; background: var(--lavender);"></div>
+    <div class="node" style="top: 60%; left: 90%; animation-delay: 1.5s; background: var(--seafoam);"></div>
+    <div class="node" style="top: 80%; left: 15%; animation-delay: 2s; background: var(--aqua);"></div>
+    <div class="node" style="top: 70%; left: 75%; animation-delay: 2.5s; background: var(--magenta);"></div>
+    <div class="node" style="top: 35%; left: 50%; animation-delay: 0.8s; background: var(--lavender);"></div>
+    <div class="node" style="top: 90%; left: 60%; animation-delay: 1.2s; background: var(--seafoam);"></div>
   </div>
 
   <div class="container">
