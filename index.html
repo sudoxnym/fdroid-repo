@@ -3,192 +3,379 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>sudoxnym fdroid repo</title>
+  <title>sudoxnym f-droid repo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --neon-cyan: #00ffff;
-      --neon-pink: #ff00ff;
-      --neon-purple: #b400ff;
-      --dark-bg: #0a0a0f;
-      --text-color: #e0e0e0;
+      --accent: #00ff9d;
+      --accent-dim: rgba(0, 255, 157, 0.15);
+      --bg-primary: #0a0a0f;
+      --bg-card: #12121a;
+      --bg-card-hover: #1a1a24;
+      --text-primary: #ffffff;
+      --text-secondary: #888899;
+      --border: #2a2a3a;
     }
     body {
-      font-family: "Rajdhani", sans-serif;
-      background: var(--dark-bg);
-      color: var(--text-color);
+      font-family: "Space Grotesk", sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      overflow-x: hidden;
     }
+
+    /* node network background */
+    .network-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .node {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .node::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      transform-origin: left;
+      opacity: 0.1;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.5); }
+    }
+
     .container {
-      max-width: 600px;
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    header {
       text-align: center;
+      margin-bottom: 3rem;
     }
     h1 {
-      font-family: "Orbitron", sans-serif;
-      font-size: 2.5rem;
-      color: var(--neon-cyan);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
       margin-bottom: 0.5rem;
-      text-transform: lowercase;
+      letter-spacing: -1px;
     }
     .tagline {
-      color: var(--neon-pink);
-      margin-bottom: 2rem;
+      color: var(--text-secondary);
       font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
-    .qr-section {
-      background: rgba(20, 20, 30, 0.8);
-      border: 1px solid var(--neon-purple);
+    .escape {
+      color: var(--accent);
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .qr-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 2rem;
+      text-align: center;
       margin-bottom: 2rem;
     }
-    .qr-section img {
-      width: 200px;
-      height: 200px;
-      margin-bottom: 1rem;
+    .qr-wrapper {
+      background: white;
+      padding: 1rem;
+      border-radius: 8px;
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    .qr-wrapper img {
+      width: 180px;
+      height: 180px;
+      display: block;
     }
     .repo-url {
-      font-family: monospace;
-      background: rgba(0, 255, 255, 0.1);
-      padding: 0.8rem 1.2rem;
-      border: 1px solid var(--neon-cyan);
-      color: var(--neon-cyan);
-      display: inline-block;
-      word-break: break-all;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.85rem;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      padding: 0.8rem 1rem;
+      color: var(--accent);
       margin-bottom: 1rem;
+      word-break: break-all;
     }
-    .copy-btn {
-      background: var(--neon-purple);
+    .btn-row {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.85rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 6px;
       border: none;
-      color: white;
-      padding: 0.5rem 1.5rem;
-      font-family: "Orbitron", sans-serif;
       cursor: pointer;
-      text-transform: lowercase;
-      transition: all 0.3s;
+      transition: all 0.2s;
+      text-decoration: none;
     }
-    .copy-btn:hover {
-      background: var(--neon-pink);
-      box-shadow: 0 0 15px var(--neon-pink);
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg-primary);
+      font-weight: 600;
     }
-    .apps {
-      margin-top: 2rem;
+    .btn-primary:hover {
+      box-shadow: 0 0 20px rgba(0, 255, 157, 0.4);
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .apps-section h2 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-weight: 500;
     }
     .app-card {
-      background: rgba(20, 20, 30, 0.8);
-      border: 1px solid var(--neon-purple);
-      padding: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
       margin-bottom: 1rem;
-      text-align: left;
       display: flex;
       gap: 1rem;
-      align-items: center;
+      align-items: flex-start;
+      transition: all 0.2s;
+    }
+    .app-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent);
     }
     .app-icon {
-      width: 64px;
-      height: 64px;
-      background: var(--neon-purple);
+      width: 56px;
+      height: 56px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent);
       border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .app-info {
+      flex: 1;
     }
     .app-info h3 {
-      font-family: "Orbitron", sans-serif;
-      color: var(--neon-pink);
-      text-transform: lowercase;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 1.1rem;
+      color: var(--text-primary);
       margin-bottom: 0.3rem;
     }
     .app-info p {
-      color: #aaa;
+      color: var(--text-secondary);
       font-size: 0.9rem;
+      line-height: 1.4;
     }
-    .badge {
-      display: inline-block;
-      padding: 0.2rem 0.6rem;
-      background: var(--neon-purple);
-      color: white;
-      font-size: 0.75rem;
+    .app-tags {
+      display: flex;
+      gap: 0.5rem;
       margin-top: 0.5rem;
+      flex-wrap: wrap;
     }
+    .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-secondary);
+    }
+    .tag.root {
+      border-color: #ff6b6b;
+      color: #ff6b6b;
+    }
+
     .instructions {
-      margin-top: 2rem;
-      text-align: left;
-      background: rgba(20, 20, 30, 0.6);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
       padding: 1.5rem;
-      border-left: 3px solid var(--neon-cyan);
+      margin-top: 2rem;
     }
-    .instructions h4 {
-      color: var(--neon-cyan);
-      margin-bottom: 0.5rem;
-      font-family: "Orbitron", sans-serif;
-      text-transform: lowercase;
+    .instructions h3 {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 1rem;
     }
     .instructions ol {
       margin-left: 1.2rem;
-      color: #ccc;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
     .instructions li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.4;
     }
-    a {
-      color: var(--neon-cyan);
+    .instructions code {
+      font-family: "JetBrains Mono", monospace;
+      background: var(--bg-primary);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--accent);
     }
-    .back-link {
+
+    .fingerprint {
       margin-top: 2rem;
-      color: var(--neon-pink);
-      text-decoration: none;
-      font-family: "Orbitron", sans-serif;
-      text-transform: lowercase;
+      text-align: center;
     }
-    .back-link:hover {
-      text-shadow: 0 0 10px var(--neon-pink);
+    .fingerprint summary {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-family: "JetBrains Mono", monospace;
+    }
+    .fingerprint pre {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      padding: 0.75rem;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+      word-break: break-all;
+      white-space: pre-wrap;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    footer a:hover {
+      color: var(--accent);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>sudoxnym repo</h1>
-    <p class="tagline">// f-droid app repository</p>
+  <div class="network-bg">
+    <div class="node" style="top: 15%; left: 10%; animation-delay: 0s;"></div>
+    <div class="node" style="top: 25%; left: 85%; animation-delay: 0.5s;"></div>
+    <div class="node" style="top: 45%; left: 5%; animation-delay: 1s;"></div>
+    <div class="node" style="top: 60%; left: 90%; animation-delay: 1.5s;"></div>
+    <div class="node" style="top: 80%; left: 15%; animation-delay: 2s;"></div>
+    <div class="node" style="top: 70%; left: 75%; animation-delay: 2.5s;"></div>
+    <div class="node" style="top: 35%; left: 50%; animation-delay: 0.8s;"></div>
+    <div class="node" style="top: 90%; left: 60%; animation-delay: 1.2s;"></div>
+  </div>
 
-    <div class="qr-section">
-      <img src="repo/icons/icon.png" alt="QR Code" onerror="this.style.display='none'">
+  <div class="container">
+    <header>
+      <h1>sudoxnym/fdroid</h1>
+      <p class="tagline">personal f-droid repository</p>
+      <p class="escape">// add repo, escape the play store</p>
+    </header>
+
+    <div class="qr-card">
+      <div class="qr-wrapper">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://sudoxnym.github.io/fdroid-repo/repo&bgcolor=ffffff&color=0a0a0f" alt="scan to add repo">
+      </div>
       <div class="repo-url">https://sudoxnym.github.io/fdroid-repo/repo</div>
-      <br><br>
-      <button class="copy-btn" onclick="navigator.clipboard.writeText('https://sudoxnym.github.io/fdroid-repo/repo');this.textContent='copied!';setTimeout(()=>this.textContent='copy url',2000)">copy url</button>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="navigator.clipboard.writeText('https://sudoxnym.github.io/fdroid-repo/repo');this.textContent='copied!';setTimeout(()=>this.textContent='copy url',2000)">copy url</button>
+        <a href="fdroidrepos://sudoxnym.github.io/fdroid-repo/repo" class="btn btn-secondary">open in f-droid</a>
+      </div>
     </div>
 
-    <div class="apps">
-      <h3 style="color:var(--neon-cyan);font-family:Orbitron;text-transform:lowercase;margin-bottom:1rem">// available apps</h3>
+    <section class="apps-section">
+      <h2>// available apps</h2>
+
+      <div class="app-card">
+        <div class="app-icon">📱</div>
+        <div class="app-info">
+          <h3>resumd</h3>
+          <p>recent apps overlay for android tv. shows your recently used apps in a floating overlay.</p>
+          <div class="app-tags">
+            <span class="tag">android tv</span>
+            <span class="tag root">root</span>
+            <span class="tag">system</span>
+          </div>
+        </div>
+      </div>
+
       <div class="app-card">
         <div class="app-icon">🌙</div>
         <div class="app-info">
           <h3>nightd</h3>
-          <p>android tv screen dimmer. blacks out display while keeping media playing.</p>
-          <span class="badge">v1.3</span>
+          <p>screen dimmer for android tv. reduces screen brightness with an overlay for comfortable viewing in dark rooms.</p>
+          <div class="app-tags">
+            <span class="tag">android tv</span>
+            <span class="tag">accessibility</span>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="instructions">
-      <h4>// how to add this repo</h4>
+      <h3>// how to add this repo</h3>
       <ol>
-        <li>open <strong>f-droid</strong> or <strong>neostore</strong></li>
-        <li>go to settings → repositories</li>
-        <li>tap "add repository"</li>
-        <li>paste the url above or scan the qr code</li>
+        <li>install <code>f-droid</code> or <code>neo store</code> on your device</li>
+        <li>go to <strong>settings</strong> → <strong>repositories</strong></li>
+        <li>tap <strong>add repository</strong></li>
+        <li>scan the qr code above or paste the url</li>
         <li>refresh and install apps</li>
       </ol>
     </div>
 
-    <a href="https://sudoxreboot.com" class="back-link">← back to sudoxreboot.com</a>
+    <details class="fingerprint">
+      <summary>repo fingerprint</summary>
+      <pre>B8 BE 68 CF B8 4C 2C 84 F7 55 B0 92 BF 87 BE 57 7A B7 E4 F8 54 A4 66 12 EE 92 8B A0 E7 E5 66 1F</pre>
+    </details>
+
+    <footer>
+      <a href="https://github.com/sudoxnym">github.com/sudoxnym</a>
+    </footer>
   </div>
 </body>
 </html>
